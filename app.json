@@ -76,32 +76,26 @@
     },
     "LEECH_UNZIP_COMMAND": {
       "description": "Enter your custom leech command like /extract@urgroupname",
-      "value": "extract"
       "required": false
     },
     "SAVE_THUMBNAIL": {
       "description": "for /savethumbnail",
-      "value": "tb"
       "required": false
     },
     "CLEAR_THUMBNAIL": {
       "description": "For /clearthumbnail",
-      "value": "clearthumbnail"
       "required": false
     },
     "TOGGLE_VID": {
       "description": "Upload as VDO",
-      "value": "vdo"
       "required": false
     },
     "TOGGLE_DOC": {
       "description": "Upload as Document",
-      "value": "doc"
       "required": false
     },
     "RENAME_COMMAND": {
       "description": "FOr Rename file or vdo",
-      "value": "rename"
       "required": false
     },
     "INDEX_LINK": {
