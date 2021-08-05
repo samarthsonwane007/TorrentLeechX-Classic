@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52
+# (c) Shrimadhav U K | gautamajay52 | MaxxRider
 
 import logging
 import math
@@ -23,6 +23,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+
 
 
 class Progress:
@@ -50,7 +51,7 @@ class Progress:
             [
                 [
                     InlineKeyboardButton(
-                        f"<b>❌Cancel</b>",
+                        "Cancel 🚫",
                         callback_data=(
                             f"gUPcancel/{chat_id}/{mes_id}/{from_user}"
                         ).encode("UTF-8"),
@@ -61,7 +62,7 @@ class Progress:
         if self.is_cancelled:
             LOGGER.info("stopping ")
             await self._mess.edit(
-                f"<b>😔Leech Canceled🔴</b>: `{ud_type}` ({humanbytes(total)})"
+                f"😔 Cancelled/ERROR: `{ud_type}` ({humanbytes(total)})"
             )
             await self._client.stop_transmission()
 
@@ -76,25 +77,18 @@ class Progress:
             elapsed_time = TimeFormatter(milliseconds=elapsed_time)
             estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-            progress = "\n[{0}{1}] \n\n<b>⚡Progress:</b> {2}%\n\n<b>🤖COMPLETED:</b> ".format(
-                "".join(
-                    [FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 10))]
-                ),
-                "".join(
-                    [
-                        UN_FINISHED_PROGRESS_STR
-                        for i in range(10 - math.floor(percentage / 10))
-                    ]
-                ),
-                round(percentage, 2),
-            )
-
-            tmp = progress + "{0} of {1}f"\n\n<b>↕Speed:</b> {2}/s\n\n<b>⏰ETA:</b> {3}\n\n".format(
+            progress = "<b>╭────── ⌊__UploadinG: 〘{2}%〙 📤__⌉</b>\n│ \n<b>├〖{0}{1}〗</b>\n".format(
+                ''.join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]),
+                ''.join([UN_FINISHED_PROGRESS_STR for i in range(20 - math.floor(percentage / 5))]),
+                round(percentage, 2))
+            #cpu = "{psutil.cpu_percent()}%"
+            tmp = progress +"│" + "\n**├Total 📀:**   〘<code>{1}</code>〙\n**├Done ✓ :** 〘<code>{0}</code>〙\n**├Speed** 🚀 :  〘<code>{2}/s</code>〙\n**├ETA** ⏳ :  〘<code>{3}</code>〙\n**│**\n**╰── ⌊ @TGFilmZone ⌉**".format(
                 humanbytes(current),
                 humanbytes(total),
                 humanbytes(speed),
                 # elapsed_time if elapsed_time != '' else "0 s",
                 estimated_total_time if estimated_total_time != "" else "0 s",
+            #tmp += "\n│"+"\n╰── ⌊ @TGFilmZone ⌉"
             )
             try:
                 if not self._mess.photo:
@@ -119,11 +113,11 @@ def humanbytes(size):
         return ""
     power = 2 ** 10
     n = 0
-    Dic_powerN = {0: " ", 1: "𝙆𝙞", 2: "𝙈𝙞", 3: "𝙂𝙞", 4: "𝙏𝙞"}
+    Dic_powerN = {0: " ", 1: "K", 2: "M", 3: "G", 4: "Ti"}
     while size > power:
         size /= power
         n += 1
-    return str(round(size, 2)) + " " + Dic_powerN[n] + "𝘽"
+    return str(round(size, 2)) + " " + Dic_powerN[n] + "B"
 
 
 def TimeFormatter(milliseconds: int) -> str:
@@ -132,10 +126,10 @@ def TimeFormatter(milliseconds: int) -> str:
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
     tmp = (
-        ((str(days) + "𝘿, ") if days else "")
-        + ((str(hours) + "𝙃, ") if hours else "")
-        + ((str(minutes) + "𝙈, ") if minutes else "")
-        + ((str(seconds) + "𝙎, ") if seconds else "")
-        + ((str(milliseconds) + "𝙈𝙎, ") if milliseconds else "")
+        ((str(days) + "d, ") if days else "")
+        + ((str(hours) + "h, ") if hours else "")
+        + ((str(minutes) + "m, ") if minutes else "")
+        + ((str(seconds) + "s, ") if seconds else "")
+        + ((str(milliseconds) + "ms, ") if milliseconds else "")
     )
     return tmp[:-2]
