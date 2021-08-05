@@ -213,6 +213,9 @@ client_secret =
     log - This will send you a txt file of the logs.(admin only)⚠️
     rclone - This will change your drive config on fly.(First one will be default)--(admin only)⚠️
 ---
+	
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/samarthsonwane007/TorrentLeechX-Classic/tree/samarthsonwane007-classicmod-1) deploy my button
+
 ## How to Use?
 
 ### 🥳 send any one of the available command, as a reply to a valid link/magnet/torrent. 👊
